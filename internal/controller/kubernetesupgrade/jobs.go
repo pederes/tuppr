@@ -176,7 +176,17 @@ func (r *Reconciler) buildJob(ctx context.Context, kubernetesUpgrade *tupprv1alp
 		"--nodes=" + controllerIP,
 		"--to=" + kubernetesUpgrade.Spec.Kubernetes.Version,
 	}
+        if kubernetesUpgrade.Spec.Kubernetes.Repository != "" {
+            base := kubernetesUpgrade.Spec.Kubernetes.Repository
+            ver := kubernetesUpgrade.Spec.Kubernetes.Version
 
+            args = append(args,
+                    "--apiserver-image", fmt.Sprintf("%s/kube-apiserver:%s", base, ver),
+                    "--kubelet-image", fmt.Sprintf("%s/kubelet:%s", base, ver),
+                    "--controller-manager-image", fmt.Sprintf("%s/kube-controller-manager:%s", base, ver),
+                    "--proxy-image", fmt.Sprintf("%s/kube-proxy:%s", base, ver),
+                    "-scheduler-image", fmt.Sprintf("%s/kube-scheduler:%s", base, ver))
+        }
 	pullPolicy := corev1.PullIfNotPresent
 	if kubernetesUpgrade.Spec.Talosctl.Image.PullPolicy != "" {
 		pullPolicy = kubernetesUpgrade.Spec.Talosctl.Image.PullPolicy

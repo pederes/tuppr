@@ -111,6 +111,9 @@ spec:
                       to (e.g., "v1.34.0")
                     pattern: ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9\-\.]+)?$
                     type: string
+                  repository:
+                    description: Optional OCI image repository prexis for Kubernetes component images.
+                    type: string
                 required:
                 - version
                 type: object

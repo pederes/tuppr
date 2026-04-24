@@ -10,6 +10,7 @@ type KubernetesSpec struct {
 	// +kubebuilder:validation:Required
 	// +kubebuilder:validation:Pattern=`^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9\-\.]+)?$`
 	Version string `json:"version"`
+        Repository string `json:"repository,omitempty"`
 }
 
 // KubernetesUpgradeSpec defines the desired state of KubernetesUpgrade
