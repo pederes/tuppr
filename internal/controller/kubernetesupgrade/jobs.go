@@ -242,11 +242,11 @@ func componentImageArgs(repository, version string) []string {
 		return nil
 	}
 	return []string{
-		"--apiserver-image=" + repo + "/kube-apiserver:" + version,
-		"--controller-manager-image=" + repo + "/kube-controller-manager:" + version,
-		"--scheduler-image=" + repo + "/kube-scheduler:" + version,
-		"--proxy-image=" + repo + "/kube-proxy:" + version,
-		"--kubelet-image=" + repo + "/kubelet:" + version,
+		"--apiserver-image=" + repo + "/kube-apiserver",
+		"--controller-manager-image=" + repo + "/kube-controller-manager",
+		"--scheduler-image=" + repo + "/kube-scheduler",
+		"--proxy-image=" + repo + "/kube-proxy",
+		"--kubelet-image=" + repo + "/kubelet",
 	}
 }
 
